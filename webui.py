@@ -88,7 +88,7 @@ if __name__ == '__main__':
                     with gr.Row():
                         with gr.Column():
                             input_text = gr.Textbox(label="Text",
-                                                    lines=5, value="[ZH]这通常只是一个信息性的日志消息，表示分布式系统正在正常工作。除非在日志中还有其他错误或警告信息，否则你通常不需要对这个消息进行特殊处理。[ZH]",
+                                                    lines=5, value="这通常只是一个信息性的日志消息，表示分布式系统正在正常工作。除非在日志中还有其他错误或警告信息，否则你通常不需要对这个消息进行特殊处理。",
                                                     elem_id=f"input-text")
                             btn = gr.Button(value="Generate", variant="primary")
                             sid = gr.Number(label="speaker_id", value=100)
