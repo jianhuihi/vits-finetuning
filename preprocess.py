@@ -7,7 +7,7 @@ if __name__ == '__main__':
   parser.add_argument("--out_extension", default="cleaned")
   parser.add_argument("--text_index", default=2, type=int)
   parser.add_argument("--filelists", nargs="+", default=["filelists/miyu_train.txt", "filelists/miyu_val.txt"])
-  parser.add_argument("--text_cleaners", nargs="+", default=["japanese_cleaners"])
+  parser.add_argument("--text_cleaners", nargs="+", default=["chinese_cleaners"])
 
   args = parser.parse_args()
     
@@ -17,6 +17,7 @@ if __name__ == '__main__':
     filepaths_and_text = load_filepaths_and_text(filelist)
     for i in range(len(filepaths_and_text)):
       original_text = filepaths_and_text[i][args.text_index]
+      print(args.text_cleaners)
       cleaned_text = text._clean_text(original_text, args.text_cleaners)
       filepaths_and_text[i][args.text_index] = cleaned_text
 

@@ -16,6 +16,7 @@ logging.getLogger("httpx").setLevel(logging.WARNING)
 logging.getLogger("asyncio").setLevel(logging.WARNING)
 
 def get_text(text, hps):
+    print(hps.data.text_cleaners)
     text_norm= text_to_sequence(text, hps.data.text_cleaners)
     if hps.data.add_blank:
         text_norm = commons.intersperse(text_norm, 0)
@@ -69,6 +70,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     device = torch.device(args.device)
     hps_ms = utils.get_hparams_from_file(args.config)
+    print(hps_ms)
     models = []
     net_g_ms = SynthesizerTrn(
         len(hps_ms.symbols),
@@ -86,10 +88,10 @@ if __name__ == '__main__':
                     with gr.Row():
                         with gr.Column():
                             input_text = gr.Textbox(label="Text",
-                                                    lines=5, value="今日はいい天気ですね。",
+                                                    lines=5, value="[ZH]这通常只是一个信息性的日志消息，表示分布式系统正在正常工作。除非在日志中还有其他错误或警告信息，否则你通常不需要对这个消息进行特殊处理。[ZH]",
                                                     elem_id=f"input-text")
                             btn = gr.Button(value="Generate", variant="primary")
-                            sid = gr.Number(label="speaker_id", value=10)
+                            sid = gr.Number(label="speaker_id", value=100)
                             with gr.Row():
                                 ns = gr.Slider(label="noise_scale", minimum=0.1, maximum=1.0, step=0.1, value=0.6,
                                                interactive=True)
